@@ -9,10 +9,10 @@ export class EmailService {
   constructor(private readonly configService: ConfigService) {
     this.transporter = nodemailer.createTransport({
       host: this.configService.get<string>('SMTP_HOST'),
-      port: this.configService.get<number>('SMTP_PORT'),
+      port: this.configService.get<number>('SMTP_PORT') || 587,
       auth: {
-        user: this.configService.get<string>('SMTP_USER'),
-        pass: this.configService.get<string>('SMTP_PASS'),
+        user: this.configService.get<string>('SMTP_MAIL'),
+        pass: this.configService.get<string>('SMTP_PASSWORD'),
       },
     });
   }
@@ -31,7 +31,7 @@ export class EmailService {
     activation_token: string;
   }) {
     await this.transporter.sendMail({
-      from: this.configService.get<string>('SMTP_FROM'),
+      from: this.configService.get<string>('SMTP_MAIL'),
       to: email,
       subject,
       html: `

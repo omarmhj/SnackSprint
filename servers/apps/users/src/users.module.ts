@@ -8,10 +8,13 @@ import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from '../prisma/Prisma.service';
 import { UserResolver } from "./user.resolver";
 import { EmailModule } from './email/email.module';
+import { configuration, getEnvFilePath } from 'libs/config/configuration.util';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
+      envFilePath: getEnvFilePath(),
+      load: [configuration],
       isGlobal: true,
     }),
     GraphQLModule.forRoot<ApolloFederationDriverConfig>({
@@ -19,7 +22,7 @@ import { EmailModule } from './email/email.module';
       autoSchemaFile: {
         federation: 2,
       },
-      context: ({ req }) => ({ req }), // to make sure that the request object is availablein the GraphQL context
+      context: ({ req }) => ({ req }), // to make sure that the request object is available in the GraphQL context
     }),
     EmailModule
   ],

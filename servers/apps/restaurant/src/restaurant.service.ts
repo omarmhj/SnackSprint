@@ -94,7 +94,7 @@ export class RestaurantService {
         restaurant,
       },
       {
-        secret: this.configService.get<string>("JWT_SECRET_KEY"),
+        secret: this.configService.get<string>("ACTIVATION_SECRET"),
         expiresIn: "5m",
       }
     );

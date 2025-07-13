@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate {
 
     try {
       const decoded = this.jwtService.verify(accessToken, {
-        secret: this.configService.get<string>("JWT_SECRET_KEY"),
+        secret: this.configService.get<string>("ACCESS_TOKEN_SECRET"),
       });
 
       const restaurant = await this.prisma.restaurant.findUnique({

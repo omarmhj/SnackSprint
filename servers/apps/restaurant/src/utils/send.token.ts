@@ -11,7 +11,7 @@ export class TokenSender {
     const accessToken = this.jwtService.sign(
       { id: restaurant.id },
       {
-        secret: this.configService.get<string>("JWT_SECRET_KEY"),
+        secret: this.configService.get<string>("ACCESS_TOKEN_SECRET"),
         expiresIn: "5m",
       }
     );
@@ -19,7 +19,7 @@ export class TokenSender {
     const refreshToken = this.jwtService.sign(
       { id: restaurant.id },
       {
-        secret: this.configService.get<string>("JWT_REFRESH_TOKEN"),
+        secret: this.configService.get<string>("REFRESH_TOKEN_SECRET"),
         expiresIn: "3d",
       }
     );

@@ -1,9 +1,11 @@
 import { Module } from "@nestjs/common";
 import { MenuService } from "./menu.service";
 import { MenuResolver } from "./menu.resolver";
-import { PrismaService } from "../../prisma/prisma.service";
+import { SharedModule } from "../shared/shared.module";
+
 @Module({
-  providers: [MenuService, MenuResolver, PrismaService],
+  imports: [SharedModule],
+  providers: [MenuService, MenuResolver],
   exports: [MenuService],
 })
 export class MenuModule {} 

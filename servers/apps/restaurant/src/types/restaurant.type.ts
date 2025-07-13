@@ -43,6 +43,12 @@ export class ActivationResponse {
 }
 
 @ObjectType()
+export class ErrorType {
+  @Field()
+  message: string;
+}
+
+@ObjectType()
 export class LoginResponse {
   @Field(() => Restaurant, { nullable: true })
   restaurant?: Restaurant;
@@ -53,10 +59,8 @@ export class LoginResponse {
   @Field({ nullable: true })
   refreshToken?: string;
 
-  @Field({ nullable: true })
-  error?: {
-    message: string;
-  };
+  @Field(() => ErrorType, { nullable: true })
+  error?: ErrorType;
 }
 
 @ObjectType()
