@@ -37,6 +37,23 @@
 			"cwd": "${workspaceRoot}/servers/apps/gateway",
 			"envFile": "${workspaceFolder}/servers/.env",
             
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Launch restaurant app",
+			"args": ["${workspaceFolder}/servers/apps/restaurant/src/main.ts"],
+			"runtimeArgs": [
+				"--nolazy",
+				"-r",
+				"ts-node/register",
+				"-r",
+				"tsconfig-paths/register"
+			],
+			"sourceMaps": true,
+			"cwd": "${workspaceRoot}/servers/apps/restaurant",
+			"envFile": "${workspaceFolder}/servers/apps/restaurant/.env.restaurant",
+			"console": "integratedTerminal"
 		}
 	]
 } 
